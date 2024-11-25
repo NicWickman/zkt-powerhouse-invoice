@@ -15,13 +15,18 @@ type InvoiceState {
     dateDelivered: String
     title: String # Optional for use of the "file name" of the document.
     status: Status!
-    refs: [String!]! # Legal stuff, component ID, whatever. Placeholdery.
+    refs: [Ref!]! # Legal stuff, component ID, whatever. Placeholdery.
     issuer: LegalEntity!
     payer: LegalEntity!
     currency: String! # Default can be USD
     lineItems: [InvoiceLineItem!]!
     totalPriceTaxExcl: Float! # Currency will be the same for now, as is set on the InvoiceState level
     totalPriceTaxIncl: Float! # Currency will be the same for now, as is set on the InvoiceState level
+}
+
+type Ref {
+  id: OID!,
+  value: String!
 }
 
 type Token {
@@ -270,38 +275,8 @@ input EditPayerBankInput {
 }
 
 input EditPayerWalletInput {
-    rpc: String
-    chainName: String
-    chainId: String
-    address: String
-}
-
-# items
-
-input AddLineItemInput {
-    id: OID!
-    description: String!
-    taxPercent: Float!
-    quantity: Float!
-    currency: String!
-    unitPriceTaxExcl: Float!
-    unitPriceTaxIncl: Float!
-    totalPriceTaxExcl: Float!
-    totalPriceTaxIncl: Float!
-}
-
-input EditLineItemInput {
-    id: OID!
-    description: String!
-    taxPercent: Float!
-    quantity: Float!
-    currency: String!
-    unitPriceTaxExcl: Float!
-    unitPriceTaxIncl: Float!
-    totalPriceTaxExcl: Float!
-    totalPriceTaxIncl: Float!
-}
-
-input DeleteLineItemInput {
-    id: OID!
+  rpc: String
+  chainName: String
+  chainId: String
+  evmAddress: String
 }
