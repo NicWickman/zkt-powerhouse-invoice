@@ -4,7 +4,7 @@
  * - delete the file and run the code generator again to have it reset
  */
 
-import { EditLineItemInput, InvoiceLineItem } from 'document-models/invoice';
+import { InvoiceLineItem } from 'document-models/invoice';
 import { InvoiceItemsOperations } from '../../gen/items/operations';
 
 export const reducer: InvoiceItemsOperations = {
