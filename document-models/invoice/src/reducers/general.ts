@@ -4,7 +4,6 @@
  * - delete the file and run the code generator again to have it reset
  */
 
-import { InputMaybe } from 'document-models/invoice/gen';
 import { InvoiceGeneralOperations } from '../../gen/general/operations';
 import { notNullUndefined } from '../utils';
 
