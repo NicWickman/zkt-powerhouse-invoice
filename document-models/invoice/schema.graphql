@@ -1,3 +1,5 @@
+scalar Amount_Tokens
+scalar EthereumAddress
 scalar Amount_Percentage
 scalar EmailAddress
 scalar Date
@@ -278,5 +280,35 @@ input EditPayerWalletInput {
   rpc: String
   chainName: String
   chainId: String
-  evmAddress: String
+  address: String
+}
+
+# items
+
+input AddLineItemInput {
+    id: OID!
+    description: String!
+    taxPercent: Float!
+    quantity: Float!
+    currency: String! # Default can be USD
+    unitPriceTaxExcl: Float!
+    unitPriceTaxIncl: Float!
+    totalPriceTaxExcl: Float!
+    totalPriceTaxIncl: Float!
+}
+
+input EditLineItemInput {
+    id: OID!
+    description: String
+    taxPercent: Float
+    quantity: Float
+    currency: String
+    unitPriceTaxExcl: Float
+    unitPriceTaxIncl: Float
+    totalPriceTaxExcl: Float
+    totalPriceTaxIncl: Float
+}
+
+input DeleteLineItemInput {
+  id: OID!
 }

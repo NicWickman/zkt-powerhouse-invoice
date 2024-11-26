@@ -150,7 +150,47 @@
                             "id": "H0UeZpA0hpFymYIfxJVQ8+B9CKM=",
                             "name": "EDIT_PAYER_WALLET",
                             "description": "",
-                            "schema": "input EditPayerWalletInput {\n  rpc: String\n  chainName: String\n  chainId: String\n  evmAddress: String\n}",
+                            "schema": "input EditPayerWalletInput {\n  rpc: String\n  chainName: String\n  chainId: String\n  address: String\n}",
+                            "template": "",
+                            "reducer": "",
+                            "errors": [],
+                            "examples": [],
+                            "scope": "global"
+                        }
+                    ]
+                },
+                {
+                    "id": "iJ9MP6P8+oO9Xb2fu3zTrhzBivk=",
+                    "name": "items",
+                    "description": "",
+                    "operations": [
+                        {
+                            "id": "zn8F5dtapLDwAPNIu2mELu6cQtw=",
+                            "name": "ADD_LINE_ITEM",
+                            "description": "",
+                            "schema": "input AddLineItemInput {\n    id: OID!\n    description: String!\n    taxPercent: Float!\n    quantity: Float!\n    currency: String! # Default can be USD\n    unitPriceTaxExcl: Float!\n    unitPriceTaxIncl: Float!\n    totalPriceTaxExcl: Float!\n    totalPriceTaxIncl: Float!\n}",
+                            "template": "",
+                            "reducer": "",
+                            "errors": [],
+                            "examples": [],
+                            "scope": "global"
+                        },
+                        {
+                            "id": "fm/7utdlk11MQVZlkSVUCJyq4AE=",
+                            "name": "EDIT_LINE_ITEM",
+                            "description": "",
+                            "schema": "input EditLineItemInput {\n    id: OID!\n    description: String\n    taxPercent: Float\n    quantity: Float\n    currency: String\n    unitPriceTaxExcl: Float\n    unitPriceTaxIncl: Float\n    totalPriceTaxExcl: Float\n    totalPriceTaxIncl: Float\n}",
+                            "template": "",
+                            "reducer": "",
+                            "errors": [],
+                            "examples": [],
+                            "scope": "global"
+                        },
+                        {
+                            "id": "rhe6xbPJ6HqMdRCyVq5Hc53mI44=",
+                            "name": "DELETE_LINE_ITEM",
+                            "description": "",
+                            "schema": "input DeleteLineItemInput {\n  id: OID!\n}",
                             "template": "",
                             "reducer": "",
                             "errors": [],
