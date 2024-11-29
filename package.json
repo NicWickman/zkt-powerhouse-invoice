@@ -28,7 +28,7 @@
     },
     "scripts": {
         "generate": "powerhouse generate",
-        "format-generated": "npx prettier '**/gen/**/*' --write --config ./prettier.config.js --ignore-path /dev/null",
+        "format-generated": "npx prettier \"**/gen/**/*\" --write --config ./prettier.config.js --ignore-path /dev/null",
         "postgenerate": "npm run format-generated",
         "check-types": "tsc",
         "postlint": "npm run check-types",
@@ -92,5 +92,11 @@
         "vitest": "^2.1.1",
         "zod": "^3.23.8"
     },
-    "description": ""
+    "description": "",
+    "dependencies": {
+        "@radix-ui/react-progress": "^1.1.0",
+        "@radix-ui/react-separator": "^1.1.0",
+        "class-variance-authority": "^0.7.1",
+        "lucide-react": "^0.462.0"
+    }
 }

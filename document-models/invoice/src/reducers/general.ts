@@ -11,19 +11,13 @@ export const reducer: InvoiceGeneralOperations = {
     editInvoiceOperation(state, action, dispatch) {
         try {
             const newState = { ...state };
-            newState.currency =
-                notNullUndefined(action.input.currency) || state.currency;
+            newState.currency = action.input.currency ?? state.currency;
             newState.dateDelivered =
-                notNullUndefined(action.input.dateDelivered) ||
-                state.dateDelivered;
-            newState.dateDue =
-                notNullUndefined(action.input.dateDue) || state.dateDue;
-            newState.dateIssued =
-                notNullUndefined(action.input.dateIssued) || state.dateIssued;
-            newState.invoiceNo =
-                notNullUndefined(action.input.invoiceNo) || state.invoiceNo;
-            newState.title =
-                notNullUndefined(action.input.title) || state.title;
+                action.input.dateDelivered ?? state.dateDelivered;
+            newState.dateDue = action.input.dateDue ?? state.dateDue;
+            newState.dateIssued = action.input.dateIssued ?? state.dateIssued;
+            newState.invoiceNo = action.input.invoiceNo ?? state.invoiceNo;
+            newState.title = action.input.title ?? state.title;
         } catch (e) {
             console.error(e);
         }
