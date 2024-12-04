@@ -1,1 +1,1 @@
-export { module as Invoice } from './invoice_backup';
+export { module as Invoice } from './invoice';

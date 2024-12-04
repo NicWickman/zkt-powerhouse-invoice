@@ -5,7 +5,6 @@
  */
 
 import { InvoiceGeneralOperations } from '../../gen/general/operations';
-import { notNullUndefined } from '../utils';
 
 export const reducer: InvoiceGeneralOperations = {
     editInvoiceOperation(state, action, dispatch) {

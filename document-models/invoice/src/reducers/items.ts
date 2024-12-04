@@ -62,33 +62,40 @@ export const reducer: InvoiceItemsOperations = {
 };
 
 function validatePrices(item: InvoiceLineItem) {
+    // Calculate total prices from unit prices and quantity
     const calcPriceIncl = item.quantity * item.unitPriceTaxIncl;
     const calcPriceExcl = item.quantity * item.unitPriceTaxExcl;
 
-    if (calcPriceIncl !== item.totalPriceTaxIncl)
+    // Validate that calculated totals match input totals
+    if (calcPriceIncl !== item.totalPriceTaxIncl) {
         throw new Error(
             'Calculated unitPriceTaxIncl does not match input total',
         );
+    }
 
-    if (calcPriceExcl !== item.totalPriceTaxExcl)
+    if (calcPriceExcl !== item.totalPriceTaxExcl) {
         throw new Error(
             'Calculated unitPriceTaxExcl does not match input total',
         );
+    }
 
-    if (
-        item.unitPriceTaxExcl.toFixed(2) !==
-        (
-            item.unitPriceTaxIncl -
-            (item.taxPercent / 100) * item.unitPriceTaxIncl
-        ).toFixed(2)
-    )
+    // Convert tax percentage to decimal rate
+    const taxRate = item.taxPercent / 100;
+
+    // Validate unit prices (tax-exclusive should equal tax-inclusive / (1 + taxRate))
+    const expectedUnitPriceExcl = (
+        item.unitPriceTaxIncl /
+        (1 + taxRate)
+    ).toFixed(2);
+    if (item.unitPriceTaxExcl.toFixed(2) !== expectedUnitPriceExcl) {
         throw new Error(
             'Tax inclusive/exclusive unit prices failed comparison.',
         );
+    }
 
-    if (
-        calcPriceExcl.toFixed(2) !==
-        (calcPriceIncl - (item.taxPercent / 100) * calcPriceIncl).toFixed(2)
-    )
+    // Validate total prices using the same formula
+    const expectedTotalPriceExcl = (calcPriceIncl / (1 + taxRate)).toFixed(2);
+    if (calcPriceExcl.toFixed(2) !== expectedTotalPriceExcl) {
         throw new Error('Tax inclusive/exclusive totals failed comparison.');
+    }
 }
