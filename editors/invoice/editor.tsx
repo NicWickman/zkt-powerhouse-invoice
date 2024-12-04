@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-max-depth */
 /* eslint-disable react/jsx-no-bind */
-import React, { useEffect, useState, useMemo } from 'react';
+import { useMemo } from 'react';
 import { EditorProps } from 'document-model/document';
 import {
     InvoiceState,
@@ -11,10 +11,11 @@ import {
     EditIssuerInput,
     EditIssuerBankInput,
     EditPayerInput,
+    DeleteLineItemInput,
 } from '../../document-models/invoice';
 
 import { DateTimeLocalInput } from './dateTimeLocalInput';
-import { LegalEntityBasicInput, LegalEntityForm } from './legalEntity';
+import { LegalEntityForm } from './legalEntity';
 import { LineItemsTable } from './lineItems';
 
 export default function Editor(
@@ -41,6 +42,10 @@ export default function Editor(
 
     function handleUpdateItem(updatedItem: InvoiceLineItem) {
         dispatch(actions.editLineItem(updatedItem));
+    }
+
+    function handleDeleteItem(input: DeleteLineItemInput) {
+        dispatch(actions.deleteLineItem(input));
     }
 
     function handleUpdateDateIssued(updatedDate: string) {
@@ -100,10 +105,6 @@ export default function Editor(
                         defaultValue={state.dateDue}
                         onChange={(e) => handleUpdateDateDue(e.target.value)}
                     />
-                    {/* <LegalEntityBasicInput
-                        onChange={handleUpdatePayerInfo}
-                        value={state.payer}
-                    /> */}
                     <LegalEntityForm
                         bankDisabled
                         legalEntity={state.payer}
@@ -112,12 +113,11 @@ export default function Editor(
                 </div>
             </div>
 
-            {/* Line Items Section */}
-
             <LineItemsTable
                 currency="USD"
                 lineItems={state.lineItems}
                 onAddItem={handleAddItem}
+                onDeleteItem={handleDeleteItem}
                 onUpdateItem={handleUpdateItem}
             />
 

@@ -2,8 +2,8 @@
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable react/button-has-type */
 import { RWAButton } from '@powerhousedao/design-system';
-import { ComponentPropsWithRef, forwardRef, useState, useMemo } from 'react';
-import { twMerge } from 'tailwind-merge';
+import { DeleteLineItemInput } from 'document-models/invoice';
+import { forwardRef, useState, useMemo } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 type LineItem = {
@@ -159,6 +159,7 @@ type LineItemsTableProps = {
     readonly currency: string;
     readonly onAddItem: (item: LineItem) => void;
     readonly onUpdateItem: (item: LineItem) => void;
+    readonly onDeleteItem: (input: DeleteLineItemInput) => void;
 };
 
 export function LineItemsTable({
@@ -166,6 +167,7 @@ export function LineItemsTable({
     currency,
     onAddItem,
     onUpdateItem,
+    onDeleteItem,
 }: LineItemsTableProps) {
     const [editingId, setEditingId] = useState<string | null>(null);
     const [isAddingNew, setIsAddingNew] = useState(false);
@@ -182,18 +184,6 @@ export function LineItemsTable({
     function handleCancelNewItem() {
         setIsAddingNew(false);
     }
-
-    const itemsTotalTaxExcl = useMemo(() => {
-        return lineItems.reduce((total, lineItem) => {
-            return total + lineItem.quantity * lineItem.unitPriceTaxExcl;
-        }, 0.0);
-    }, [lineItems]);
-
-    const itemsTotalTaxIncl = useMemo(() => {
-        return lineItems.reduce((total, lineItem) => {
-            return total + lineItem.quantity * lineItem.unitPriceTaxIncl;
-        }, 0.0);
-    }, [lineItems]);
 
     return (
         <div>
@@ -276,6 +266,14 @@ export function LineItemsTable({
                                             }
                                         >
                                             Edit
+                                        </button>
+                                        <button
+                                            className="px-2 py-1 bg-gray-500 text-white rounded"
+                                            onClick={() =>
+                                                onDeleteItem({ id: item.id })
+                                            }
+                                        >
+                                            Delete
                                         </button>
                                     </td>
                                 </tr>
