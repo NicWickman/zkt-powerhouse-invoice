@@ -10,13 +10,15 @@ export const reducer: InvoiceGeneralOperations = {
     editInvoiceOperation(state, action, dispatch) {
         try {
             const newState = { ...state };
+
             newState.currency = action.input.currency ?? state.currency;
             newState.dateDelivered =
                 action.input.dateDelivered ?? state.dateDelivered;
             newState.dateDue = action.input.dateDue ?? state.dateDue;
             newState.dateIssued = action.input.dateIssued ?? state.dateIssued;
             newState.invoiceNo = action.input.invoiceNo ?? state.invoiceNo;
-            newState.title = action.input.title ?? state.title;
+
+            state = Object.assign(state, newState);
         } catch (e) {
             console.error(e);
         }

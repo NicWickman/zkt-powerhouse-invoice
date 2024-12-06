@@ -9,11 +9,7 @@ import { reducer } from './gen/reducer';
 import { documentModel } from './gen/document-model';
 import genUtils from './gen/utils';
 import * as customUtils from './src/utils';
-import {
-    InvoiceState,
-    InvoiceAction,
-    InvoiceLocalState,
-} from './gen/types';
+import { InvoiceState, InvoiceAction, InvoiceLocalState } from './gen/types';
 
 const Document = Invoice;
 const utils = { ...genUtils, ...customUtils };

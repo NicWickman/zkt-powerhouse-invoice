@@ -126,16 +126,6 @@ export const reducer: InvoicePartiesOperations = {
                     notNullUndefined(action.input.beneficiary) ||
                     state.issuer.paymentRouting.bank?.beneficiary ||
                     null,
-                contact: {
-                    tel:
-                        notNullUndefined(action.input.tel) ||
-                        state.issuer.paymentRouting.bank?.contact?.tel ||
-                        null,
-                    email:
-                        notNullUndefined(action.input.email) ||
-                        state.issuer.paymentRouting.bank?.contact?.email ||
-                        null,
-                },
                 name:
                     notNullUndefined(action.input.name) ||
                     state.issuer.paymentRouting.bank?.name ||
@@ -221,18 +211,6 @@ export const reducer: InvoicePartiesOperations = {
                         state.issuer.paymentRouting.bank?.intermediaryBank
                             ?.beneficiary ||
                         null,
-                    contact: {
-                        tel:
-                            notNullUndefined(action.input.telIntermediary) ||
-                            state.issuer.paymentRouting.bank?.intermediaryBank
-                                ?.contact?.tel ||
-                            null,
-                        email:
-                            notNullUndefined(action.input.emailIntermediary) ||
-                            state.issuer.paymentRouting.bank?.intermediaryBank
-                                ?.contact?.email ||
-                            null,
-                    },
                     name:
                         notNullUndefined(action.input.nameIntermediary) ||
                         state.issuer.paymentRouting.bank?.intermediaryBank
@@ -397,16 +375,6 @@ export const reducer: InvoicePartiesOperations = {
                     notNullUndefined(action.input.beneficiary) ||
                     state.payer.paymentRouting.bank?.beneficiary ||
                     null,
-                contact: {
-                    tel:
-                        notNullUndefined(action.input.tel) ||
-                        state.payer.paymentRouting.bank?.contact?.tel ||
-                        null,
-                    email:
-                        notNullUndefined(action.input.email) ||
-                        state.payer.paymentRouting.bank?.contact?.email ||
-                        null,
-                },
                 name:
                     notNullUndefined(action.input.name) ||
                     state.payer.paymentRouting.bank?.name ||
@@ -492,18 +460,6 @@ export const reducer: InvoicePartiesOperations = {
                         state.payer.paymentRouting.bank?.intermediaryBank
                             ?.beneficiary ||
                         null,
-                    contact: {
-                        tel:
-                            notNullUndefined(action.input.telIntermediary) ||
-                            state.payer.paymentRouting.bank?.intermediaryBank
-                                ?.contact?.tel ||
-                            null,
-                        email:
-                            notNullUndefined(action.input.emailIntermediary) ||
-                            state.payer.paymentRouting.bank?.intermediaryBank
-                                ?.contact?.email ||
-                            null,
-                    },
                     name:
                         notNullUndefined(action.input.nameIntermediary) ||
                         state.payer.paymentRouting.bank?.intermediaryBank

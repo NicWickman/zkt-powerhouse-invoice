@@ -14,6 +14,8 @@ export const DateTimeLocalInput = forwardRef(function DateTimeLocalInput(
 ) {
     const { inputType = 'datetime-local', ...inputProps } = props;
 
+    console.log('old date: ', props.defaultValue);
+
     return (
         <input
             {...inputProps}

@@ -27,8 +27,8 @@ type InvoiceState {
 }
 
 type Ref {
-  id: OID!,
-  value: String!
+    id: OID!
+    value: String!
 }
 
 type Token {
@@ -70,7 +70,6 @@ type PaymentRouting {
 type Bank {
     name: String!
     address: Address!
-    contact: ContactInfo
     ABA: String
     IBAN: String
     SWIFT: String
@@ -84,7 +83,6 @@ type Bank {
 type IntermediaryBank {
     name: String!
     address: Address!
-    contact: ContactInfo
     ABA: String
     IBAN: String
     SWIFT: String
@@ -138,8 +136,6 @@ enum AccountType {
     WALLET
 }
 
-
-
 # general
 
 input EditInvoiceInput {
@@ -192,8 +188,6 @@ input EditIssuerBankInput {
     postalCode: String
     country: String
     stateProvince: String
-    tel: String
-    email: String
     ABA: String
     IBAN: String
     SWIFT: String
@@ -209,8 +203,6 @@ input EditIssuerBankInput {
     postalCodeIntermediary: String
     countryIntermediary: String
     stateProvinceIntermediary: String
-    telIntermediary: String
-    emailIntermediary: String
     ABAIntermediary: String
     IBANIntermediary: String
     SWIFTIntermediary: String
@@ -248,8 +240,6 @@ input EditPayerBankInput {
     postalCode: String
     country: String
     stateProvince: String
-    tel: String
-    email: String
     ABA: String
     IBAN: String
     SWIFT: String
@@ -265,8 +255,6 @@ input EditPayerBankInput {
     postalCodeIntermediary: String
     countryIntermediary: String
     stateProvinceIntermediary: String
-    telIntermediary: String
-    emailIntermediary: String
     ABAIntermediary: String
     IBANIntermediary: String
     SWIFTIntermediary: String
@@ -277,10 +265,10 @@ input EditPayerBankInput {
 }
 
 input EditPayerWalletInput {
-  rpc: String
-  chainName: String
-  chainId: String
-  address: String
+    rpc: String
+    chainName: String
+    chainId: String
+    address: String
 }
 
 # items
@@ -310,5 +298,5 @@ input EditLineItemInput {
 }
 
 input DeleteLineItemInput {
-  id: OID!
+    id: OID!
 }

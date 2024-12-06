@@ -40,8 +40,6 @@ export type LegalEntityBankInput = {
     cityIntermediary?: InputMaybe<Scalars['String']['input']>;
     country?: InputMaybe<Scalars['String']['input']>;
     countryIntermediary?: InputMaybe<Scalars['String']['input']>;
-    email?: InputMaybe<Scalars['String']['input']>;
-    emailIntermediary?: InputMaybe<Scalars['String']['input']>;
     extendedAddress?: InputMaybe<Scalars['String']['input']>;
     extendedAddressIntermediary?: InputMaybe<Scalars['String']['input']>;
     memo?: InputMaybe<Scalars['String']['input']>;
@@ -54,11 +52,8 @@ export type LegalEntityBankInput = {
     stateProvinceIntermediary?: InputMaybe<Scalars['String']['input']>;
     streetAddress?: InputMaybe<Scalars['String']['input']>;
     streetAddressIntermediary?: InputMaybe<Scalars['String']['input']>;
-    tel?: InputMaybe<Scalars['String']['input']>;
-    telIntermediary?: InputMaybe<Scalars['String']['input']>;
 };
 
-// Base TextInput component
 const TextInput = forwardRef(function TextInput(
     props: ComponentPropsWithRef<'input'>,
     ref: Ref<HTMLInputElement>,
@@ -78,7 +73,6 @@ const TextInput = forwardRef(function TextInput(
 
 const ACCOUNT_TYPES = ['CHECKING', 'SAVINGS', 'TRUST'];
 
-// Add this selector component near your TextInput component
 const AccountTypeSelect = forwardRef(function AccountTypeSelect(
     props: ComponentPropsWithRef<'select'>,
     ref: Ref<HTMLSelectElement>,
@@ -102,7 +96,6 @@ const AccountTypeSelect = forwardRef(function AccountTypeSelect(
     );
 });
 
-// Basic Info Component
 export type LegalEntityBasicInputProps = Omit<
     ComponentPropsWithRef<'div'>,
     'children'
@@ -416,33 +409,7 @@ export const LegalEntityBankInput = forwardRef(function LegalEntityBankInput(
                     </div>
                 </div>
             </div>
-            {/* Contact Information */}
-            <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                    <label className="block text-sm font-medium text-gray-700">
-                        Email
-                    </label>
-                    <TextInput
-                        disabled={disabled}
-                        onChange={createInputHandler('email')}
-                        placeholder="Email"
-                        type="email"
-                        value={value.email ?? ''}
-                    />
-                </div>
-                <div className="space-y-2">
-                    <label className="block text-sm font-medium text-gray-700">
-                        Telephone
-                    </label>
-                    <TextInput
-                        disabled={disabled}
-                        onChange={createInputHandler('tel')}
-                        placeholder="Telephone"
-                        type="tel"
-                        value={value.tel ?? ''}
-                    />
-                </div>
-            </div>
+
             {/* Intermediary Bank Toggle */}
             <div className="flex items-center space-x-2">
                 <input
@@ -631,36 +598,6 @@ export const LegalEntityBankInput = forwardRef(function LegalEntityBankInput(
                         </div>
                     </div>
 
-                    {/* Contact Information */}
-                    <div className="grid grid-cols-2 gap-4">
-                        <div className="space-y-2">
-                            <label className="block text-sm font-medium text-gray-700">
-                                Email
-                            </label>
-                            <TextInput
-                                disabled={disabled}
-                                onChange={createInputHandler(
-                                    'emailIntermediary',
-                                )}
-                                placeholder="Email"
-                                type="email"
-                                value={value.emailIntermediary ?? ''}
-                            />
-                        </div>
-                        <div className="space-y-2">
-                            <label className="block text-sm font-medium text-gray-700">
-                                Telephone
-                            </label>
-                            <TextInput
-                                disabled={disabled}
-                                onChange={createInputHandler('telIntermediary')}
-                                placeholder="Telephone"
-                                type="tel"
-                                value={value.telIntermediary ?? ''}
-                            />
-                        </div>
-                    </div>
-
                     {/* Memo field */}
                     <div className="space-y-2">
                         <label className="block text-sm font-medium text-gray-700">
@@ -728,8 +665,6 @@ export function LegalEntityForm({
         accountTypeIntermediary:
             legalEntity.paymentRouting?.bank?.intermediaryBank?.accountType ??
             null,
-
-        // Address fields
         city: legalEntity.paymentRouting?.bank?.address.city ?? null,
         cityIntermediary:
             legalEntity.paymentRouting?.bank?.intermediaryBank?.address.city ??
@@ -758,18 +693,6 @@ export function LegalEntityForm({
         streetAddressIntermediary:
             legalEntity.paymentRouting?.bank?.intermediaryBank?.address
                 .streetAddress ?? null,
-
-        // // ContactInfo fields
-        // email: legalEntity.paymentRouting?.bank?.contactInfo?.email ?? null,
-        // emailIntermediary:
-        //     legalEntity.paymentRouting?.bank?.intermediaryBank?.contactInfo
-        //         ?.email ?? null,
-        // tel: legalEntity.paymentRouting?.bank?.contactInfo?.tel ?? null,
-        // telIntermediary:
-        //     legalEntity.paymentRouting?.bank?.intermediaryBank?.contactInfo
-        //         ?.tel ?? null,
-
-        // Other fields
         memo: legalEntity.paymentRouting?.bank?.memo ?? null,
         memoIntermediary:
             legalEntity.paymentRouting?.bank?.intermediaryBank?.memo ?? null,
